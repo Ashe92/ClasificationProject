@@ -18,14 +18,12 @@ namespace ClassificationProject.Services
         {
             var fileLines = FileService.GetLines();
             var users = CreateClassification(fileLines);
-            var counted = 0;
-            users.ForEach(u => { u.UserSession.ForEach(us => { counted += us.SessionTimes.Count; }); });
-            Console.Write($"Ilosc linii przed: {fileLines.Count.ToString()}, ilosc linii po: {counted.ToString()}");
-            
 
+            Console.WriteLine("Done");
+            
         }
 
-        public List<User> CreateClassification(List<Line> lines)
+        private List<User> CreateClassification(List<Line> lines)
         {
             var groupedLines = lines.GroupBy(x => x.Ip);
             var users = new List<User>();
@@ -33,7 +31,6 @@ namespace ClassificationProject.Services
             {
                 var user = new User();
 
-                user.UserSession = new List<Session>();
                 user.Ip = userSessions.Key;
                 var userListOfSessions = lines.Where(x => x.Ip == user.Ip).OrderBy(y => y.Date).ToList();
                 user.UserSession = CreateUserSessions(userListOfSessions);
@@ -56,7 +53,7 @@ namespace ClassificationProject.Services
             {
                 lastElement = r;
                 var timeBetweenRequests = lastElement.Date - firstElement.Date;
-                if (timeBetweenRequests.TotalMinutes <= 15)
+                if(CheckIfLineIsInSession(session,lastElement))
                 {
                     if (timeBetweenRequests.TotalMinutes > 0)
                     {
@@ -85,6 +82,30 @@ namespace ClassificationProject.Services
             });
             return listOfSessions;
 
+        }
+
+        private bool CheckIfLineIsInSession(Session session, Line lastElement)
+        {
+            var inActualSession = false;
+            var timeBetweenRequests = lastElement.Date - session.SessionTimes.First().Date;
+            if (timeBetweenRequests.TotalMinutes <= 15)
+            {
+                var previousElement = session.SessionTimes.Last();
+                inActualSession = CheckIfPreviousElementHasLink(lastElement, previousElement);
+
+            }
+            else
+            {
+                inActualSession = false;
+            }
+
+            return inActualSession;
+        }
+
+        private bool CheckIfPreviousElementHasLink(Line lastElement, Line previousElement)
+        {
+            //todo kd get file ;
+            return false;
         }
     }
 }

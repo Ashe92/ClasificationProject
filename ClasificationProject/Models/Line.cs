@@ -22,10 +22,21 @@ namespace ClasificationProject.Models
             }
         }
 
-        public DateTime Date { get; set; }
+        public DateTime Date { get; private set; }
         public string PlusTime { get; set; }
         public string RequestType { get; set; }
-        public string Page { get; set; }
+        public int PageID { get; private set; }
+        private string _page;
+
+        public string Page
+        {
+            get => _page;
+            set
+            {
+                _page = value;
+                GetIdOfPage();
+            }
+        }
         public string PageVersion { get; set; }
         public string RequestResponse { get; set; }
         public string ErrorCode { get; set; }
@@ -60,6 +71,34 @@ namespace ClasificationProject.Models
             catch (Exception e)
             {
                 throw new Exception("Błąd konwertowania daty");
+            }
+        }
+
+        private void GetIdOfPage()
+        {
+            switch (Page)
+            {
+                case "":
+                    PageID = 0;
+                    break;
+                case "1":
+                    PageID = 0;
+                    break;
+                case ".html":
+                    PageID = 0;
+                    break;
+                case "2":
+                    PageID = 0;
+                    break;
+                case "3":
+                    PageID = 0;
+                    break;
+                case "4":
+                    PageID = 0;
+                    break;
+                default:
+                    PageID = -1;
+                    break;
             }
         }
     }
