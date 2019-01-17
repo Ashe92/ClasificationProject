@@ -3,7 +3,7 @@ using System.Text;
 
 namespace LogAnalysisProject.Models
 {
-    public class Line
+    public class Request
     {
         public string Ip { get; set; }
         private string _dateTime;

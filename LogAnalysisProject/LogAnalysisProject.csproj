@@ -42,7 +42,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Models\Line.cs" />
+    <Compile Include="Models\Request.cs" />
+    <Compile Include="Models\LogAnalisys.cs" />
     <Compile Include="Models\Session.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Services\LogAnalysissService.cs" />

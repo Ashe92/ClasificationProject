@@ -8,7 +8,7 @@ namespace LogAnalysisProject.Services
 {
     public class FileService
     {
-        public List<Line> GetLogLines()
+        public List<Request> GetLogLines()
         {
             var fileLines = LoadLogFileLines();
             var listOfLines = LoadLinesFromFile(fileLines);
@@ -32,9 +32,9 @@ namespace LogAnalysisProject.Services
             }
         }
 
-        private List<Line> LoadLinesFromFile(string[] lines)
+        private List<Request> LoadLinesFromFile(string[] lines)
         {
-            var listOfLines = new List<Line>();
+            var listOfLines = new List<Request>();
             foreach (var line in lines)
             {
                 var fromIndex = 0;
@@ -60,7 +60,7 @@ namespace LogAnalysisProject.Services
                 var done = endOfLine.Split();
                 var errCode = done[0];
                 var code = done[1];
-                var lineObject = new Line()
+                var lineObject = new Request()
                 {
                     DateTime = dateTime,
                     Ip = ipString,

@@ -8,7 +8,7 @@ namespace LogAnalysisProject.Models
         public string PageLink { get; set; }
         public DateTime StartDateTime { get; set; }
         public double SessionLength { get; private set; }
-
+        public int NumberOfRequests { get; set; }
         private DateTime _endDateTime;
 
         public DateTime EndDateTime
@@ -27,11 +27,11 @@ namespace LogAnalysisProject.Models
         }
 
         public int RequestedTimes { get; set; }
-        public List<Line> SessionTimes { get; }
+        public List<Request> Requests { get; }
 
         public Session()
         {
-            SessionTimes = new List<Line>();
+            Requests = new List<Request>();
         }
     }
 }

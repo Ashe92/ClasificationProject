@@ -27,7 +27,7 @@ namespace LogAnalysisProject.Services
             _webStructure = FileService.ReadCsvFile();
         }
 
-        private List<User> CreateListOfUsers(List<Line> lines)
+        private List<User> CreateListOfUsers(List<Request> lines)
         {
             var groupedLines = lines.GroupBy(x => x.Ip);
             var users = new List<User>();
@@ -45,42 +45,33 @@ namespace LogAnalysisProject.Services
             return users;
         }
 
-        private List<Session> CreateUserSessions(List<Line> requestLine)
+        private List<Session> CreateUserSessions(List<Request> requestLine)
         {
             var listOfSessions = new List<Session>();
-            var session = new Session();
+            
             var firstElement = requestLine.First();
-            session.StartDateTime = firstElement.Date;
-            session.SessionTimes.Add(firstElement);
-            Line lastElement = null;
-            requestLine.ForEach(r =>
+            var session = StartNewSession(firstElement);
+            requestLine.ForEach(lastElement =>
             {
-                lastElement = r;
                 var timeBetweenRequests = lastElement.Date - firstElement.Date;
                 if(CheckIfLineIsInSession(session,lastElement))
                 {
                     if (timeBetweenRequests.TotalMinutes > 0)
                     {
-                        session.SessionTimes.Add(lastElement);
+                        session.Requests.Add(lastElement);
                     }
                 }
                 else
                 {
-                    session.RequestedTimes = session.SessionTimes.Count;
-                    session.StartDateTime = firstElement.Date;
-                    session.EndDateTime = session.SessionTimes[session.RequestedTimes - 1].Date;
+                    EndSession(session);
                     listOfSessions.Add(session);
-                    //new session
-                    session = new Session();
+
                     firstElement = lastElement;
-                    session.SessionTimes.Add(firstElement);
-                    
+                    session = StartNewSession(firstElement);
                 }
                 if (requestLine[requestLine.Count - 1] == lastElement)
                 {
-                    session.RequestedTimes = session.SessionTimes.Count;
-                    session.StartDateTime = firstElement.Date;
-                    session.EndDateTime = session.SessionTimes[session.RequestedTimes - 1].Date;
+                    EndSession(session);
                     listOfSessions.Add(session);
                 }
             });
@@ -88,19 +79,34 @@ namespace LogAnalysisProject.Services
 
         }
 
-        private bool CheckIfLineIsInSession(Session session, Line lastElement)
+        private Session StartNewSession(Request startRequest)
+        {
+            var session = new Session();
+            session.StartDateTime = startRequest.Date;
+            session.PageLink = startRequest.Page;
+            session.Requests.Add(startRequest);
+            return session;
+        }
+
+        private void EndSession(Session session)
+        {
+            session.RequestedTimes = session.Requests.Count;
+            session.EndDateTime = session.Requests[session.RequestedTimes - 1].Date;
+        }
+
+        private bool CheckIfLineIsInSession(Session session, Request lastElement)
         {
             var inActualSession = false;
-            var timeBetweenRequests = lastElement.Date - session.SessionTimes.First().Date;
+            var timeBetweenRequests = lastElement.Date - session.Requests.First().Date;
             if (timeBetweenRequests.TotalMinutes <= 15)
             {
-                var previousElement = session.SessionTimes.Last();
+                var previousElement = session.Requests.Last();
                 inActualSession = CheckIfPreviousElementHasLink(lastElement, previousElement);
             }
             return inActualSession;
         }
 
-        private bool CheckIfPreviousElementHasLink(Line lastElement, Line previousElement)
+        private bool CheckIfPreviousElementHasLink(Request lastElement, Request previousElement)
         {
             return _webStructure[previousElement.PageID, lastElement.PageID] == 1;
         }
