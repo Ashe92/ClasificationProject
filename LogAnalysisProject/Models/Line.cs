@@ -1,9 +1,7 @@
 ﻿using System;
-using System.Globalization;
-using System.Runtime.InteropServices;
 using System.Text;
 
-namespace ClasificationProject.Models
+namespace LogAnalysisProject.Models
 {
     public class Line
     {
@@ -78,23 +76,23 @@ namespace ClasificationProject.Models
         {
             switch (Page)
             {
-                case "":
+                case "Shop.html":
                     PageID = 0;
                     break;
-                case "1":
-                    PageID = 0;
+                case "AddProduct.html":
+                    PageID = 1;
                     break;
-                case ".html":
-                    PageID = 0;
+                case "Summary.html":
+                    PageID = 2;
                     break;
-                case "2":
-                    PageID = 0;
+                case "Payment.html":
+                    PageID = 3;
                     break;
-                case "3":
-                    PageID = 0;
+                case "About.html":
+                    PageID = 4;
                     break;
-                case "4":
-                    PageID = 0;
+                case "Contact.html":
+                    PageID = 5;
                     break;
                 default:
                     PageID = -1;

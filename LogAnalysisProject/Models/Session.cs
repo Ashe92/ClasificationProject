@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace ClasificationProject.Models
+namespace LogAnalysisProject.Models
 {
     public class Session
     {

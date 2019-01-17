@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace ClasificationProject.Models
+namespace LogAnalysisProject.Models
 {
     public class User
     {

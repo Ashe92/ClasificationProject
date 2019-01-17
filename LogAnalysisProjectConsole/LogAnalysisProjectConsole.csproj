@@ -6,8 +6,8 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{5EB5C708-5EBC-4CA9-98A7-968A8A80C4AD}</ProjectGuid>
     <OutputType>Exe</OutputType>
-    <RootNamespace>ClassificationProjectConsole</RootNamespace>
-    <AssemblyName>ClassificationProjectConsole</AssemblyName>
+    <RootNamespace>LogAnalysisProjectConsole</RootNamespace>
+    <AssemblyName>LogAnalysisProjectConsole</AssemblyName>
     <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -50,9 +50,9 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\ClasificationProject\ClassificationProject.csproj">
+    <ProjectReference Include="..\LogAnalysisProject\LogAnalysisProject.csproj">
       <Project>{1dd5ad55-0661-4c59-a52d-b2fc6106f219}</Project>
-      <Name>ClassificationProject</Name>
+      <Name>LogAnalysisProject</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

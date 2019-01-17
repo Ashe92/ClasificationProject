@@ -3,16 +3,16 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using ClassificationProject.Services;
+using LogAnalysisProject.Services;
 
-namespace ClassificationProjectConsole
+namespace LogAnalysisProjectConsole
 {
     class Program
     {
         static void Main(string[] args)
         {
-            ClassificationService classificationService = new ClassificationService();
-            classificationService.RunClassification();
+            LogAnalysissService logAnalysissService = new LogAnalysissService();
+            logAnalysissService.RunClassification();
             Console.Read();
 
         }

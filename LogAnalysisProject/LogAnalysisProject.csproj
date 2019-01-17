@@ -7,8 +7,8 @@
     <ProjectGuid>{1DD5AD55-0661-4C59-A52D-B2FC6106F219}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>ClasificationProject</RootNamespace>
-    <AssemblyName>ClasificationProject</AssemblyName>
+    <RootNamespace>LogAnalysisProject</RootNamespace>
+    <AssemblyName>LogAnalysisProject</AssemblyName>
     <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
@@ -45,7 +45,7 @@
     <Compile Include="Models\Line.cs" />
     <Compile Include="Models\Session.cs" />
     <Compile Include="Models\User.cs" />
-    <Compile Include="Services\ClassificationService.cs" />
+    <Compile Include="Services\LogAnalysissService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\FileService.cs" />
   </ItemGroup>

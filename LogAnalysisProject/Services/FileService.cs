@@ -1,27 +1,27 @@
-﻿using ClasificationProject.Models;
+﻿using LogAnalysisProject.Models;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Windows.Forms;
 
-namespace ClassificationProject.Services
+namespace LogAnalysisProject.Services
 {
     public class FileService
     {
-        public List<Line> GetLines()
+        public List<Line> GetLogLines()
         {
-            var fileLines = LoadFileLines();
+            var fileLines = LoadLogFileLines();
             var listOfLines = LoadLinesFromFile(fileLines);
 
             return listOfLines;
         }
 
-        private string[] LoadFileLines()
+        private string[] LoadLogFileLines()
         {
             try
             {   // Read the stream to a string, and write the string to the console.
                 var path = Path.GetDirectoryName(Application.ExecutablePath);
-                string[] lines = File.ReadAllLines($@"{path}\\..\\..\\..\\ClasificationProject\Resources\log.txt");
+                string[] lines = File.ReadAllLines($@"{path}\\..\\..\\..\\LogAnalysisProject\Resources\log.txt");
                 return lines;
             }
             catch (Exception e)
@@ -76,6 +76,33 @@ namespace ClassificationProject.Services
             }
 
             return listOfLines;
+        }
+
+        public int[,] ReadCsvFile()
+        {
+            try
+            {   // Read the stream to a string, and write the string to the console.
+                var path = Path.GetDirectoryName(Application.ExecutablePath);
+                string[] lines = File.ReadAllLines($@"{path}\\..\\..\\..\\LogAnalysisProject\Resources\web-structure.csv");
+                int[,] pageStruct = new int[6,6];
+                for(int i=0;i< 6; i++)
+                {
+                    var line = lines[i];
+                    var splittedLine = line.Split(';');
+                    for (int j = 0; j < splittedLine.Length; j++)
+                    {
+                        pageStruct[i, j] = Convert.ToInt32(splittedLine[j]);
+                    }
+                }
+
+                return pageStruct;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("The file web-structure.csv could not be read:");
+                Console.WriteLine(e.Message);
+                throw new Exception(e.Message);
+            }
         }
     }
 }

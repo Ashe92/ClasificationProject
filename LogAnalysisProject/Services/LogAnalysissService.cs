@@ -1,29 +1,33 @@
-﻿using System;
+﻿using LogAnalysisProject.Models;
+using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Dynamic;
 using System.Linq;
-using System.Runtime.InteropServices;
-using ClasificationProject.Models;
 
-namespace ClassificationProject.Services
+namespace LogAnalysisProject.Services
 {
-    public class ClassificationService
+    public class LogAnalysissService
     {
         
         private FileService _fileService;
         private FileService FileService => _fileService ?? (_fileService = new FileService());
 
+        private int[,] _webStructure;
+
         public void RunClassification()
         {
-            var fileLines = FileService.GetLines();
-            var users = CreateClassification(fileLines);
+            GetWebStructure();
+            var fileLines = FileService.GetLogLines();
+            var users = CreateListOfUsers(fileLines);
 
             Console.WriteLine("Done");
-            
         }
 
-        private List<User> CreateClassification(List<Line> lines)
+        private void GetWebStructure()
+        {
+            _webStructure = FileService.ReadCsvFile();
+        }
+
+        private List<User> CreateListOfUsers(List<Line> lines)
         {
             var groupedLines = lines.GroupBy(x => x.Ip);
             var users = new List<User>();
@@ -92,20 +96,13 @@ namespace ClassificationProject.Services
             {
                 var previousElement = session.SessionTimes.Last();
                 inActualSession = CheckIfPreviousElementHasLink(lastElement, previousElement);
-
             }
-            else
-            {
-                inActualSession = false;
-            }
-
             return inActualSession;
         }
 
         private bool CheckIfPreviousElementHasLink(Line lastElement, Line previousElement)
         {
-            //todo kd get file ;
-            return false;
+            return _webStructure[previousElement.PageID, lastElement.PageID] == 1;
         }
     }
 }
