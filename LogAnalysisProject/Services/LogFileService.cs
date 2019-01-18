@@ -75,15 +75,18 @@ namespace LogAnalysisProject.Services
         {
             var session = new Session();
             session.StartDateTime = startRequest.Date;
-            session.PageLink = startRequest.Page;
+            session.StartingPageLink = startRequest.Page;
             session.Requests.Add(startRequest);
             return session;
         }
 
         private void EndSession(Session session)
         {
-            session.RequestedTimes = session.Requests.Count;
-            session.EndDateTime = session.Requests[session.RequestedTimes - 1].Date;
+            session.NumberOfRequests = session.Requests.Count;
+
+            var lastElement = session.Requests[session.NumberOfRequests - 1];
+            session.DeparturePageLink = lastElement.Page;
+            session.EndDateTime = lastElement.Date;
         }
 
         private bool CheckIfLineIsInSession(Session session, Request lastElement)
@@ -103,7 +106,7 @@ namespace LogAnalysisProject.Services
             if(_webStructure == null )
                 GetWebStructure();
                 
-            return _webStructure[previousElement.PageID, lastElement.PageID] == 1;
+            return _webStructure[previousElement.PageId, lastElement.PageId] == 1;
         }
     }
 }

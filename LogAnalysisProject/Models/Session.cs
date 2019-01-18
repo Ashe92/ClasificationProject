@@ -5,10 +5,11 @@ namespace LogAnalysisProject.Models
 {
     public class Session
     {
-        public string PageLink { get; set; }
+        public string StartingPageLink { get; set; }
+        public string DeparturePageLink { get; set; }
         public DateTime StartDateTime { get; set; }
         public double SessionLength { get; private set; }
-        public int NumberOfRequests { get; set; }
+
         private DateTime _endDateTime;
 
         public DateTime EndDateTime
@@ -21,17 +22,18 @@ namespace LogAnalysisProject.Models
             }
         }
 
-        private void GetSessionLength()
-        {
-            SessionLength = (EndDateTime - StartDateTime).TotalMinutes;
-        }
-
-        public int RequestedTimes { get; set; }
+        public int NumberOfRequests { get; set; }
         public List<Request> Requests { get; }
 
         public Session()
         {
             Requests = new List<Request>();
         }
+
+        private void GetSessionLength()
+        {
+            SessionLength = (EndDateTime - StartDateTime).TotalMinutes;
+        }
+
     }
 }

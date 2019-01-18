@@ -23,7 +23,7 @@ namespace LogAnalysisProject.Models
         public DateTime Date { get; private set; }
         public string PlusTime { get; set; }
         public string RequestType { get; set; }
-        public int PageID { get; private set; }
+        public int PageId { get; private set; }
         private string _page;
 
         public string Page
@@ -77,25 +77,25 @@ namespace LogAnalysisProject.Models
             switch (Page)
             {
                 case "Shop.html":
-                    PageID = 0;
+                    PageId = 0;
                     break;
                 case "AddProduct.html":
-                    PageID = 1;
+                    PageId = 1;
                     break;
                 case "Summary.html":
-                    PageID = 2;
+                    PageId = 2;
                     break;
                 case "Payment.html":
-                    PageID = 3;
+                    PageId = 3;
                     break;
                 case "About.html":
-                    PageID = 4;
+                    PageId = 4;
                     break;
                 case "Contact.html":
-                    PageID = 5;
+                    PageId = 5;
                     break;
                 default:
-                    PageID = -1;
+                    PageId = -1;
                     break;
             }
         }
