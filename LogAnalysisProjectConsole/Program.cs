@@ -7,8 +7,8 @@ namespace LogAnalysisProjectConsole
     {
         static void Main(string[] args)
         {
-            LogAnalysisService logAnalysisService = new LogAnalysisService();
-            logAnalysisService.RunClassification();
+            AnalysisService analysisService = new AnalysisService();
+            analysisService.RunAnalysis();
             
             Console.Read();
 
