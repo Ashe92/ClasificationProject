@@ -57,6 +57,7 @@ namespace LogAnalysisProject.Services
                 
             });
             LogAnalysis.TotalNumberOffSessions = LogAnalysis.AllSessions.Count;
+            LogAnalysis.TenFirstSessions = LogAnalysis.AllSessions.OrderBy(d => d.StartDateTime).Take(10).ToList();
         }
          
         private void SetUserList(List<User> usersData)
