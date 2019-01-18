@@ -5,6 +5,7 @@ namespace LogAnalysisProject.Models
 {
     public class Session
     {
+        public string UserIp{ get; set; }
         public string StartingPageLink { get; set; }
         public string DeparturePageLink { get; set; }
         public DateTime StartDateTime { get; set; }
