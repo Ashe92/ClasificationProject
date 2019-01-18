@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using LogAnalysisProject.Services;
+﻿using LogAnalysisProject.Services;
+using System;
 
 namespace LogAnalysisProjectConsole
 {
@@ -11,8 +7,9 @@ namespace LogAnalysisProjectConsole
     {
         static void Main(string[] args)
         {
-            LogAnalysissService logAnalysissService = new LogAnalysissService();
-            logAnalysissService.RunClassification();
+            LogAnalysisService logAnalysisService = new LogAnalysisService();
+            logAnalysisService.RunClassification();
+            
             Console.Read();
 
         }

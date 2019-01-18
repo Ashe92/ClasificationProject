@@ -5,30 +5,22 @@ using System.Linq;
 
 namespace LogAnalysisProject.Services
 {
-    public class LogAnalysissService
+    public class LogFileService
     {
-        
+
         private FileService _fileService;
         private FileService FileService => _fileService ?? (_fileService = new FileService());
 
-        private int[,] _webStructure;
-
-        public void RunClassification()
-        {
-            GetWebStructure();
-            var fileLines = FileService.GetLogLines();
-            var users = CreateListOfUsers(fileLines);
-
-            Console.WriteLine("Done");
-        }
+        private int[,] _webStructure = null;
 
         private void GetWebStructure()
         {
             _webStructure = FileService.ReadCsvFile();
         }
 
-        private List<User> CreateListOfUsers(List<Request> lines)
+        public List<User> CreateListOfUsers(List<Request> lines)
         {
+            GetWebStructure();
             var groupedLines = lines.GroupBy(x => x.Ip);
             var users = new List<User>();
             foreach (var userSessions in groupedLines)
@@ -38,7 +30,7 @@ namespace LogAnalysisProject.Services
                 user.Ip = userSessions.Key;
                 var userListOfSessions = lines.Where(x => x.Ip == user.Ip).OrderBy(y => y.Date).ToList();
                 user.UserSession = CreateUserSessions(userListOfSessions);
-                user.AverageNumberOfRequest = Math.Round((double)userListOfSessions.Count / (double)user.UserSession.Count,2);
+                user.AverageNumberOfRequest = Math.Round((double)userListOfSessions.Count / (double)user.UserSession.Count, 2);
                 users.Add(user);
             }
 
@@ -48,13 +40,13 @@ namespace LogAnalysisProject.Services
         private List<Session> CreateUserSessions(List<Request> requestLine)
         {
             var listOfSessions = new List<Session>();
-            
+
             var firstElement = requestLine.First();
             var session = StartNewSession(firstElement);
             requestLine.ForEach(lastElement =>
             {
                 var timeBetweenRequests = lastElement.Date - firstElement.Date;
-                if(CheckIfLineIsInSession(session,lastElement))
+                if (CheckIfLineIsInSession(session, lastElement))
                 {
                     if (timeBetweenRequests.TotalMinutes > 0)
                     {
@@ -108,6 +100,9 @@ namespace LogAnalysisProject.Services
 
         private bool CheckIfPreviousElementHasLink(Request lastElement, Request previousElement)
         {
+            if(_webStructure == null )
+                GetWebStructure();
+                
             return _webStructure[previousElement.PageID, lastElement.PageID] == 1;
         }
     }
