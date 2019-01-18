@@ -22,8 +22,8 @@ namespace LogAnalysisProject.Services
             var users = LogFileService.CreateListOfUsers(fileLines);
             var userDataAnalysis = AnalysisService.CreateLogAnalysis(users);
             Console.WriteLine("Done collecting data");
-            //todo add printing
             PrinterService.PrintData(userDataAnalysis);
+            Console.WriteLine("Done");
         }
 
         
