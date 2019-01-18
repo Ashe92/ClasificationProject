@@ -8,8 +8,6 @@ namespace LogAnalysisProject.Models
         public List<String> UserList { get; set; }
         public int TotalNumberOffSessions { get; set; }
         public  List<KeyValuePair<string, int>> NumberOfSessionForUser { get; }
-        public List<int> NumberOfRequests{ get; }
-        public List<int> SessionStartingHour{ get; }
         public KeyValuePair<string, int> MostCommonEntryPage { get; set; }
         public KeyValuePair<string, int> MostCommonDeparturePage { get; set; }
         public List<KeyValuePair<string,int>> EntryPageNumbers { get; set; }
@@ -17,6 +15,8 @@ namespace LogAnalysisProject.Models
         public List<Session> AllSessions { get; }
         public List<Session> TenFirstSessions { get; set; }
         public List<double> SessionsLengthsMinutes { get; set; }
+        public List<int> NumberOfRequests { get; }
+        public List<int> SessionStartingHour { get; }
 
         public LogAnalysis()
         {
@@ -28,6 +28,9 @@ namespace LogAnalysisProject.Models
             DeparturePageNumbers = new List<KeyValuePair<string, int>>();
             AllSessions = new List<Session>();
             TenFirstSessions = new List<Session>();
+            SessionsLengthsMinutes= new List<double>();
+            NumberOfRequests = new List<int>();
+            SessionStartingHour = new List<int>();
         }
     }
 }

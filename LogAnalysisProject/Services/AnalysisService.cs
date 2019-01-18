@@ -1,4 +1,5 @@
 ﻿using System;
+using LogAnalysisProject.Models;
 
 namespace LogAnalysisProject.Services
 {
@@ -16,16 +17,15 @@ namespace LogAnalysisProject.Services
         private LogAnalysisService _logAnalysisService;
         private LogAnalysisService LogAnalysisService => _logAnalysisService ?? (_logAnalysisService = new LogAnalysisService());
 
-        public void RunAnalysis()
+        public LogAnalysis RunAnalysis()
         {
             var fileLines = FileService.GetLogLines();
             var users = LogFileService.CreateListOfUsers(fileLines);
             var userDataAnalysis = LogAnalysisService.CreateLogAnalysis(users);
             Console.WriteLine("Done collecting data");
-            PrinterService.PrintData(userDataAnalysis);
-            Console.WriteLine("Done");
+            return userDataAnalysis;
         }
 
-        
+
     }
 }

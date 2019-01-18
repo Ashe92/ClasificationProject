@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LogAnalysisProject", "LogAn
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LogAnalysisProjectConsole", "LogAnalysisProjectConsole\LogAnalysisProjectConsole.csproj", "{5EB5C708-5EBC-4CA9-98A7-968A8A80C4AD}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LogAnalysisResult", "LogAnalysisResult\LogAnalysisResult.csproj", "{20E4D516-1031-4844-826E-FF30C6231CF3}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{5EB5C708-5EBC-4CA9-98A7-968A8A80C4AD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5EB5C708-5EBC-4CA9-98A7-968A8A80C4AD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5EB5C708-5EBC-4CA9-98A7-968A8A80C4AD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{20E4D516-1031-4844-826E-FF30C6231CF3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{20E4D516-1031-4844-826E-FF30C6231CF3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{20E4D516-1031-4844-826E-FF30C6231CF3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{20E4D516-1031-4844-826E-FF30C6231CF3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
