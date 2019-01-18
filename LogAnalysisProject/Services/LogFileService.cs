@@ -76,6 +76,7 @@ namespace LogAnalysisProject.Services
             var session = new Session();
             session.UserIp = startRequest.Ip;
             session.StartDateTime = startRequest.Date;
+            session.SessionStartingHour = startRequest.Date.Hour;
             session.StartingPageLink = startRequest.Page;
             session.Requests.Add(startRequest);
             return session;

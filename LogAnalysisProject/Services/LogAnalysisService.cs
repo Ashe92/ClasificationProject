@@ -32,8 +32,9 @@ namespace LogAnalysisProject.Services
             {
                 u.UserSession.ForEach(s =>
                 {
-                    LogAnalysis.NumberOfRequests.Add(new KeyValuePair<Session, int>(s, s.NumberOfRequests));
-                    LogAnalysis.SessionStartingHour.Add(new KeyValuePair<Session, int>(s, s.StartDateTime.Hour));
+                    LogAnalysis.NumberOfRequests.Add(s.NumberOfRequests);
+                    LogAnalysis.SessionStartingHour.Add( s.StartDateTime.Hour);
+                    LogAnalysis.SessionsLengthsMinutes.Add(s.SessionLengthInMinutes);
                     startingPages.Add(s.StartingPageLink);
                     departurePages.Add(s.DeparturePageLink);
                 });
@@ -52,7 +53,7 @@ namespace LogAnalysisProject.Services
         {
             usersData.ForEach(u =>
             {
-                LogAnalysis.AverageNumberOfSessionForUser.Add(new KeyValuePair<string, int>(u.Ip,u.UserSession.Count));
+                LogAnalysis.NumberOfSessionForUser.Add(new KeyValuePair<string, int>(u.Ip,u.UserSession.Count));
                 LogAnalysis.AllSessions.AddRange(u.UserSession);
                 
             });

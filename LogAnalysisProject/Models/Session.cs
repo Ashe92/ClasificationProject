@@ -9,8 +9,8 @@ namespace LogAnalysisProject.Models
         public string StartingPageLink { get; set; }
         public string DeparturePageLink { get; set; }
         public DateTime StartDateTime { get; set; }
-        public double SessionLength { get; private set; }
-
+        public double SessionLengthInMinutes { get; private set; }
+        public int SessionStartingHour { get; set; }
         private DateTime _endDateTime;
 
         public DateTime EndDateTime
@@ -33,7 +33,7 @@ namespace LogAnalysisProject.Models
 
         private void GetSessionLength()
         {
-            SessionLength = (EndDateTime - StartDateTime).TotalMinutes;
+            SessionLengthInMinutes = (EndDateTime - StartDateTime).TotalMinutes;
         }
 
     }
