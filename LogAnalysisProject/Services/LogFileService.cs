@@ -40,27 +40,35 @@ namespace LogAnalysisProject.Services
         private List<Session> CreateUserSessions(List<Request> requestLine)
         {
             var listOfSessions = new List<Session>();
-
-            var firstElement = requestLine.First();
-            var session = StartNewSession(firstElement);
+            Request firstElement = null;
+            var session = new Session();
+            
             requestLine.ForEach(lastElement =>
             {
-                var timeBetweenRequests = lastElement.Date - firstElement.Date;
-                if (CheckIfLineIsInSession(session, lastElement))
+                if (firstElement == null)
                 {
-                    if (timeBetweenRequests.TotalMinutes > 0)
-                    {
-                        session.Requests.Add(lastElement);
-                    }
-                }
-                else
-                {
-                    EndSession(session);
-                    listOfSessions.Add(session);
-
                     firstElement = lastElement;
                     session = StartNewSession(firstElement);
                 }
+                else
+                {
+                    var timeBetweenRequests = lastElement.Date - firstElement.Date;
+                    if (CheckIfLineIsInSession(session, lastElement))
+                    {
+                        if (timeBetweenRequests.TotalMinutes > 0)
+                        {
+                            session.Requests.Add(lastElement);
+                        }
+                    }
+                    else
+                    {
+                        EndSession(session);
+                        listOfSessions.Add(session);
+
+                        firstElement = null;
+                    }
+                }
+
                 if (requestLine[requestLine.Count - 1] == lastElement)
                 {
                     EndSession(session);

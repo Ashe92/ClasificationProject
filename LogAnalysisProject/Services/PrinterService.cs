@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using LogAnalysisProject.Models;
 
 namespace LogAnalysisProject.Services
@@ -11,6 +12,7 @@ namespace LogAnalysisProject.Services
             PrintUsers(userDataAnalysis);
             PrintEntryPages(userDataAnalysis);
             PrintDeparturePages(userDataAnalysis);
+            PrintTenFirsSessions(userDataAnalysis.TenFirstSessions);
         }
 
         private void PrintUsers(LogAnalysis userDataAnalysis)
@@ -31,7 +33,6 @@ namespace LogAnalysisProject.Services
             Console.WriteLine();
             Console.WriteLine($"Najczęstsza strona końcowa: {userDataAnalysis.MostCommonDeparturePage.Key}; {userDataAnalysis.MostCommonDeparturePage.Value.ToString()}");
             Console.WriteLine();
-
         }
 
         private void PrintEntryPages(LogAnalysis userDataAnalysis)
@@ -52,6 +53,22 @@ namespace LogAnalysisProject.Services
                 Console.WriteLine($"{u.Key}, : {u.Value.ToString()}");
             });
             Console.WriteLine();
+        }
+
+        private void PrintTenFirsSessions(List<Session> tenFirstSessions)
+        {
+            Console.WriteLine("10 pierwszych sesji");
+            var x = 1;
+            tenFirstSessions.ForEach(s =>
+            {
+                Console.WriteLine($"Sesja {x}: {s.UserIp}");
+                s.Requests.ForEach(r =>
+                {
+                    Console.Write($"{r.Page} => ");
+                });
+                Console.WriteLine();
+                x++;
+            });
         }
     }
 }
