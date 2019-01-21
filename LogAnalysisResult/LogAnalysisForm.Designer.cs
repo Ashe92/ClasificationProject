@@ -37,85 +37,147 @@
             System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea3 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
             System.Windows.Forms.DataVisualization.Charting.Legend legend3 = new System.Windows.Forms.DataVisualization.Charting.Legend();
             System.Windows.Forms.DataVisualization.Charting.Series series3 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            this.chart1 = new System.Windows.Forms.DataVisualization.Charting.Chart();
-            this.chart2 = new System.Windows.Forms.DataVisualization.Charting.Chart();
-            this.chart3 = new System.Windows.Forms.DataVisualization.Charting.Chart();
-            ((System.ComponentModel.ISupportInitialize)(this.chart1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.chart2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.chart3)).BeginInit();
+            this.uxTabs = new System.Windows.Forms.TabControl();
+            this.uxTabHour = new System.Windows.Forms.TabPage();
+            this.uxTabTotalMinutes = new System.Windows.Forms.TabPage();
+            this.uxTabTotalRequests = new System.Windows.Forms.TabPage();
+            this.uxSessionHour = new System.Windows.Forms.DataVisualization.Charting.Chart();
+            this.uxSessionTotalMinutes = new System.Windows.Forms.DataVisualization.Charting.Chart();
+            this.uxSessionTotalRequests = new System.Windows.Forms.DataVisualization.Charting.Chart();
+            this.uxTabs.SuspendLayout();
+            this.uxTabHour.SuspendLayout();
+            this.uxTabTotalMinutes.SuspendLayout();
+            this.uxTabTotalRequests.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.uxSessionHour)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.uxSessionTotalMinutes)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.uxSessionTotalRequests)).BeginInit();
             this.SuspendLayout();
             // 
-            // chart1
+            // uxTabs
+            // 
+            this.uxTabs.Controls.Add(this.uxTabHour);
+            this.uxTabs.Controls.Add(this.uxTabTotalMinutes);
+            this.uxTabs.Controls.Add(this.uxTabTotalRequests);
+            this.uxTabs.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.uxTabs.Location = new System.Drawing.Point(0, 0);
+            this.uxTabs.Name = "uxTabs";
+            this.uxTabs.SelectedIndex = 0;
+            this.uxTabs.Size = new System.Drawing.Size(1099, 505);
+            this.uxTabs.TabIndex = 3;
+            // 
+            // uxTabHour
+            // 
+            this.uxTabHour.Controls.Add(this.uxSessionHour);
+            this.uxTabHour.Location = new System.Drawing.Point(4, 22);
+            this.uxTabHour.Name = "uxTabHour";
+            this.uxTabHour.Padding = new System.Windows.Forms.Padding(3);
+            this.uxTabHour.Size = new System.Drawing.Size(1091, 479);
+            this.uxTabHour.TabIndex = 0;
+            this.uxTabHour.Text = "Godzina rozpoczęcia sesji";
+            this.uxTabHour.UseVisualStyleBackColor = true;
+            // 
+            // uxTabTotalMinutes
+            // 
+            this.uxTabTotalMinutes.Controls.Add(this.uxSessionTotalMinutes);
+            this.uxTabTotalMinutes.Location = new System.Drawing.Point(4, 22);
+            this.uxTabTotalMinutes.Name = "uxTabTotalMinutes";
+            this.uxTabTotalMinutes.Padding = new System.Windows.Forms.Padding(3);
+            this.uxTabTotalMinutes.Size = new System.Drawing.Size(1091, 479);
+            this.uxTabTotalMinutes.TabIndex = 1;
+            this.uxTabTotalMinutes.Text = "Czas sesji[min]";
+            this.uxTabTotalMinutes.UseVisualStyleBackColor = true;
+            // 
+            // uxTabTotalRequests
+            // 
+            this.uxTabTotalRequests.Controls.Add(this.uxSessionTotalRequests);
+            this.uxTabTotalRequests.Location = new System.Drawing.Point(4, 22);
+            this.uxTabTotalRequests.Name = "uxTabTotalRequests";
+            this.uxTabTotalRequests.Padding = new System.Windows.Forms.Padding(3);
+            this.uxTabTotalRequests.Size = new System.Drawing.Size(1091, 479);
+            this.uxTabTotalRequests.TabIndex = 2;
+            this.uxTabTotalRequests.Text = "Ilośc żądań";
+            this.uxTabTotalRequests.UseVisualStyleBackColor = true;
+            // 
+            // uxSessionHour
             // 
             chartArea1.Name = "ChartArea1";
-            this.chart1.ChartAreas.Add(chartArea1);
+            this.uxSessionHour.ChartAreas.Add(chartArea1);
+            this.uxSessionHour.Dock = System.Windows.Forms.DockStyle.Fill;
             legend1.Name = "Legend1";
-            this.chart1.Legends.Add(legend1);
-            this.chart1.Location = new System.Drawing.Point(12, 12);
-            this.chart1.Name = "chart1";
+            this.uxSessionHour.Legends.Add(legend1);
+            this.uxSessionHour.Location = new System.Drawing.Point(3, 3);
+            this.uxSessionHour.Name = "uxSessionHour";
             series1.ChartArea = "ChartArea1";
             series1.Legend = "Legend1";
             series1.Name = "Series1";
-            this.chart1.Series.Add(series1);
-            this.chart1.Size = new System.Drawing.Size(376, 300);
-            this.chart1.TabIndex = 0;
-            this.chart1.Text = "chart1";
+            this.uxSessionHour.Series.Add(series1);
+            this.uxSessionHour.Size = new System.Drawing.Size(1085, 473);
+            this.uxSessionHour.TabIndex = 0;
+            this.uxSessionHour.Text = "chart1";
             // 
-            // chart2
+            // uxSessionTotalMinutes
             // 
             chartArea2.Name = "ChartArea1";
-            this.chart2.ChartAreas.Add(chartArea2);
+            this.uxSessionTotalMinutes.ChartAreas.Add(chartArea2);
+            this.uxSessionTotalMinutes.Dock = System.Windows.Forms.DockStyle.Fill;
             legend2.Name = "Legend1";
-            this.chart2.Legends.Add(legend2);
-            this.chart2.Location = new System.Drawing.Point(409, 12);
-            this.chart2.Name = "chart2";
+            this.uxSessionTotalMinutes.Legends.Add(legend2);
+            this.uxSessionTotalMinutes.Location = new System.Drawing.Point(3, 3);
+            this.uxSessionTotalMinutes.Name = "uxSessionTotalMinutes";
             series2.ChartArea = "ChartArea1";
             series2.Legend = "Legend1";
             series2.Name = "Series1";
-            this.chart2.Series.Add(series2);
-            this.chart2.Size = new System.Drawing.Size(356, 300);
-            this.chart2.TabIndex = 1;
-            this.chart2.Text = "chart2";
+            this.uxSessionTotalMinutes.Series.Add(series2);
+            this.uxSessionTotalMinutes.Size = new System.Drawing.Size(1085, 473);
+            this.uxSessionTotalMinutes.TabIndex = 0;
+            this.uxSessionTotalMinutes.Text = "chart2";
             // 
-            // chart3
+            // uxSessionTotalRequests
             // 
             chartArea3.Name = "ChartArea1";
-            this.chart3.ChartAreas.Add(chartArea3);
+            this.uxSessionTotalRequests.ChartAreas.Add(chartArea3);
+            this.uxSessionTotalRequests.Dock = System.Windows.Forms.DockStyle.Fill;
             legend3.Name = "Legend1";
-            this.chart3.Legends.Add(legend3);
-            this.chart3.Location = new System.Drawing.Point(226, 318);
-            this.chart3.Name = "chart3";
+            this.uxSessionTotalRequests.Legends.Add(legend3);
+            this.uxSessionTotalRequests.Location = new System.Drawing.Point(3, 3);
+            this.uxSessionTotalRequests.Name = "uxSessionTotalRequests";
             series3.ChartArea = "ChartArea1";
             series3.Legend = "Legend1";
             series3.Name = "Series1";
-            this.chart3.Series.Add(series3);
-            this.chart3.Size = new System.Drawing.Size(300, 300);
-            this.chart3.TabIndex = 2;
-            this.chart3.Text = "chart3";
+            this.uxSessionTotalRequests.Series.Add(series3);
+            this.uxSessionTotalRequests.Size = new System.Drawing.Size(1085, 473);
+            this.uxSessionTotalRequests.TabIndex = 0;
+            this.uxSessionTotalRequests.Text = "Ilość ządań dla sesji";
             // 
             // LogAnalysisForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(777, 628);
-            this.Controls.Add(this.chart3);
-            this.Controls.Add(this.chart2);
-            this.Controls.Add(this.chart1);
+            this.ClientSize = new System.Drawing.Size(1099, 505);
+            this.Controls.Add(this.uxTabs);
             this.Name = "LogAnalysisForm";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Form1";
-            ((System.ComponentModel.ISupportInitialize)(this.chart1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.chart2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.chart3)).EndInit();
+            this.uxTabs.ResumeLayout(false);
+            this.uxTabHour.ResumeLayout(false);
+            this.uxTabTotalMinutes.ResumeLayout(false);
+            this.uxTabTotalRequests.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.uxSessionHour)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.uxSessionTotalMinutes)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.uxSessionTotalRequests)).EndInit();
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private System.Windows.Forms.DataVisualization.Charting.Chart chart1;
-        private System.Windows.Forms.DataVisualization.Charting.Chart chart2;
-        private System.Windows.Forms.DataVisualization.Charting.Chart chart3;
+        private System.Windows.Forms.TabControl uxTabs;
+        private System.Windows.Forms.TabPage uxTabHour;
+        private System.Windows.Forms.DataVisualization.Charting.Chart uxSessionHour;
+        private System.Windows.Forms.TabPage uxTabTotalMinutes;
+        private System.Windows.Forms.DataVisualization.Charting.Chart uxSessionTotalMinutes;
+        private System.Windows.Forms.TabPage uxTabTotalRequests;
+        private System.Windows.Forms.DataVisualization.Charting.Chart uxSessionTotalRequests;
     }
 }
 

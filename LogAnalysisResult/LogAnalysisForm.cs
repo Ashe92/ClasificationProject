@@ -24,7 +24,35 @@ namespace LogAnalysisResult
         {
             base.OnLoad(e);
             //load data 
+            LoadChartSessionHour();
+            LoadChartSessionTotalMinutes();
+            LoadChartSessionTotalRequests();
         }
 
+        private void LoadChartSessionTotalRequests()
+        {
+            //todo
+            //uxSessionTotalRequests
+            var x = 1;
+            LogAnalysis.AllSessions.ForEach(s =>
+            {
+                uxSessionTotalRequests.Series["Series1"].Points.AddXY(x, s.NumberOfRequests);
+                uxSessionTotalMinutes.Series["Series1"].Points.AddXY(x, s.SessionLengthInMinutes);
+                uxSessionHour.Series["Series1"].Points.AddXY(x, s.StartDateTime.Hour);
+                x++;
+            });
+        }
+
+        private void LoadChartSessionTotalMinutes()
+        {
+            //todo
+            //uxSessionTotalMinutes
+        }
+
+        private void LoadChartSessionHour()
+        {
+            //todo
+            //uxSessionHour
+        }
     }
 }
