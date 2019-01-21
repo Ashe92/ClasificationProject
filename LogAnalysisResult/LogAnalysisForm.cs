@@ -24,15 +24,11 @@ namespace LogAnalysisResult
         {
             base.OnLoad(e);
             //load data 
-            LoadChartSessionHour();
-            LoadChartSessionTotalMinutes();
-            LoadChartSessionTotalRequests();
+            LoadSessionCharts();
         }
 
-        private void LoadChartSessionTotalRequests()
+        private void LoadSessionCharts()
         {
-            //todo
-            //uxSessionTotalRequests
             var x = 1;
             LogAnalysis.AllSessions.ForEach(s =>
             {
@@ -41,18 +37,6 @@ namespace LogAnalysisResult
                 uxSessionHour.Series["Series1"].Points.AddXY(x, s.StartDateTime.Hour);
                 x++;
             });
-        }
-
-        private void LoadChartSessionTotalMinutes()
-        {
-            //todo
-            //uxSessionTotalMinutes
-        }
-
-        private void LoadChartSessionHour()
-        {
-            //todo
-            //uxSessionHour
         }
     }
 }
