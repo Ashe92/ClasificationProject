@@ -13,6 +13,8 @@ namespace LogAnalysisProjectConsole
         {
             AnalysisService analysisService = new AnalysisService();
             var logAnalysis = analysisService.RunAnalysis();
+            PrinterService printerService = new PrinterService();
+            printerService.PrintData(logAnalysis);
             Application.EnableVisualStyles();
             Application.Run(new LogAnalysisForm(logAnalysis));
             Console.Read();

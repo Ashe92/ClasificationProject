@@ -5,7 +5,7 @@ namespace LogAnalysisProject.Models
 {
     public class LogAnalysis
     {
-        public List<String> UserList { get; set; }
+        public List<User> UserList { get; set; }
         public int TotalNumberOffSessions { get; set; }
         public  List<KeyValuePair<string, int>> NumberOfSessionForUser { get; }
         public KeyValuePair<string, int> MostCommonEntryPage { get; set; }
@@ -14,13 +14,14 @@ namespace LogAnalysisProject.Models
         public List<KeyValuePair<string, int>> DeparturePageNumbers { get; set; }
         public List<Session> AllSessions { get; }
         public List<Session> TenFirstSessions { get; set; }
+        //charts
         public List<double> SessionsLengthsMinutes { get; set; }
         public List<int> NumberOfRequests { get; }
         public List<int> SessionStartingHour { get; }
 
         public LogAnalysis()
         {
-            UserList = new List<string>();
+            UserList = new List<User>();
             NumberOfSessionForUser = new List<KeyValuePair<string, int>>();
             MostCommonEntryPage = new KeyValuePair<string, int>();
             MostCommonDeparturePage = new KeyValuePair<string, int>();

@@ -65,7 +65,7 @@ namespace LogAnalysisProject.Services
         {
             usersData.ForEach(u =>
             {
-                LogAnalysis.UserList.Add(u.Ip);
+                LogAnalysis.UserList.Add(u);
             });
         }
     }
